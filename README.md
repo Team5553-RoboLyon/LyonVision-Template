@@ -1,4 +1,5 @@
 # Vision-Tracking-Format
+A simple vision tracking format to use and create other programs with, by deafult it should be somewhat setup for the 2019 FRC game Deep Space
 
 Vision Tracking Documentation.
 ===
