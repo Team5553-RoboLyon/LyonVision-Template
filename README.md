@@ -3,6 +3,8 @@
 Vision Tracking Documentation.
 ===
 
+## All Vision Tracking code is located in the folder [Vision](vision)
+
 # Getting started
 ### 1. Grab the image:
   - [Tinkerboard Image](https://dlcdnets.asus.com/pub/ASUS/mb/Linux/Tinker_Board_S/20181023-tinker-board-linaro-stretch-alip-v2.0.8.img.zip)
