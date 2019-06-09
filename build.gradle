@@ -91,4 +91,14 @@ model {
   }
 }
 
-task runVision(dependsOn: "simulateCurtinFrcVision${wpi.platforms.desktop.capitalize()}DebugExecutable")
+// Copie du dossier Data/ dans le dossier ou se trouve le programme Windows
+task copyData(type: Copy) {
+  from 'src'
+  into 'build/install/curtinFrcVision/windowsx86-64/debug/lib'
+  include 'data/***'
+}
+
+// La copie doit être executée après l'installation du programme (sinon le dossier est effacé)
+copyData.mustRunAfter "installCurtinFrcVision${wpi.platforms.desktop.capitalize()}DebugExecutable"
+
+task runVision(dependsOn: ["simulateCurtinFrcVision${wpi.platforms.desktop.capitalize()}DebugExecutable", "copyData"])
