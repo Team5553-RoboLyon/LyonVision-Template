@@ -86,7 +86,7 @@ model {
         }
       }
 
-      useLibrary(it, 'opencv')
+      useLibrary(it, 'opencv', 'wpilib')
     }
   }
 }
