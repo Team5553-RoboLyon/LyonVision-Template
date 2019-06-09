@@ -1,7 +1,7 @@
 plugins {
   id "edu.wpi.first.GradleRIO" version "2019.4.1"
+  id "cpp"
 }
-apply plugin: 'cpp'
 toolchainsPlugin.withRaspbian()
 
 deploy {
