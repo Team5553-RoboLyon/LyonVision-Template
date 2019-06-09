@@ -11,9 +11,9 @@ deploy {
       locations {
         // Change this if you've changed the target hostname, username or password.
         ssh {
-          address = 'curtinvision.local'
+          address = 'pi5553.local'
           user = 'vision'
-          password = 'curtinfrc'
+          password = '5553'
         }
       }
     }
