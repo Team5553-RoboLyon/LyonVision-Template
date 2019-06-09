@@ -58,5 +58,7 @@ wget --no-check-certificate -qO - https://github.com/CJBuchel/Vision-Tracking-Fo
 .\gradlew deploy
 ```
 
-
-
+## Build all
+```bash
+.\gradlew build
+```
