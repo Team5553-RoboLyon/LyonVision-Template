@@ -30,6 +30,17 @@ deploy {
       postdeploy << { execute('chmod +x curtinFrcVision') }
     }
 
+    // Copy data/ folder in the program's working directory
+    fileTreeArtifact('visionData') {
+      targets << 'coprocessor'
+      files = fileTree(dir: 'src/')
+
+      predeploy << {
+        // Copy src/data/ directory in /home/vision
+        execute('sudo cp -r $(pwd)/data /home/vision')
+      }
+    }
+
     // Some extra stuff for our vision program. Includes system configs, also!
     fileTreeArtifact('visionResources') {
       targets << 'coprocessor'
