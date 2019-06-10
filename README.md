@@ -14,7 +14,7 @@ A simple vision tracking format to use and create other programs with, by defaul
 ### 2. Install [Java 11](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html)
 
 ### 3. Install a compiler
-  - [Visual Studio](https://visualstudio.microsoft.com/fr/downloads/) on Windows (in the Visual Studio Installer programm, choose "Desktop Developement in C++")
+  - [Visual Studio](https://visualstudio.microsoft.com/fr/downloads/) on Windows (in the Visual Studio Installer program, choose "Desktop Developement in C++")
   - Gcc on Linux
 
 ### 4. Install the raspbian cross-compiler
@@ -39,7 +39,7 @@ A simple vision tracking format to use and create other programs with, by defaul
 
 ### 4. Run the following command:
   ```bash
-  wget --no-check-certificate -qO - https://github.com/CJBuchel/Vision-Tracking-Format/blob/master/vision/bootstrap.sh?raw=1 | bash
+  wget --no-check-certificate -qO - https://github.com/nathanmutin/Vision-Tracking-Format/blob/master/vision/bootstrap.sh?raw=1 | bash
   ```
 
 ### 5. Your Coprocessor will now restart
