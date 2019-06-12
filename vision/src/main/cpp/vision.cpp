@@ -24,7 +24,7 @@ int ResWidth = 640, ResHeight = 480;
 float width_goal;
 float height_goal;
 
-bool usingTapeTrack = false;
+bool usingTapeTrack = true;
 
 // This is the main entrypoint into the Vision Program!
 void curtin_frc_vision::run() {
