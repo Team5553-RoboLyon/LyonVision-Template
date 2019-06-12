@@ -36,7 +36,6 @@ void curtin_frc_vision::run() {
   cs::CvSink sink{"USB"};
   sink.SetSource(cam);
   
-  // The camera defaults to a lower resolution, but you can choose any compatible resolution here.
   cam.SetResolution(ResWidth, ResHeight);
 
   width_goal = ResWidth/2;
@@ -52,7 +51,7 @@ void curtin_frc_vision::run() {
 
   cv::Mat imgOriginal{video_mode.height, video_mode.width, CV_8UC3};
 
-	// Changes the exposure for detecting retroReflective Tape and gives minimal error (requires ring light)
+	// Changes the exposure for detecting retroReflective Tape and gives minimal error (requires ring light, And only works once deployed to a Pi/Tinker)
 	if (usingTapeTrack);
 	{
 		cam.SetExposureManual(-100);
