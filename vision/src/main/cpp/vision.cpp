@@ -131,7 +131,6 @@ void curtin_frc_vision::run() {
 			for( int i = 0; i<hull.size(); i++)
 			{ mc[i] = Point2f( mu[i].m10/mu[i].m00 , mu[i].m01/mu[i].m00 ); }
 
-			vector<double> weights;
 			for( int i = 0; i<hull.size(); i++ )
 			{
 				Scalar color = Scalar(167,151,0); // B G R values
@@ -144,8 +143,7 @@ void curtin_frc_vision::run() {
 				height_offset = height_goal - center.y;
 		
 				stringstream temp;
-				temp << weights[i];
-				putText(imgTracking, temp.str(),Point(center.x,center.y+50), FONT_HERSHEY_SIMPLEX, 1, Scalar(0,0,255));
+				putText(imgTracking, "Points(= ",Point(center.x,center.y+50), FONT_HERSHEY_SIMPLEX, 1, Scalar(0,0,255));
 			}
 
 		#ifdef __DESKTOP__
