@@ -16,6 +16,10 @@ deploy {
           password = '5553'
         }
       }
+
+      // For VSCode Debugging - we won't be able to deploy to every target!
+      if (project.hasProperty("debugMode"))
+        failOnMissing = false
     }
   }
 
@@ -26,8 +30,9 @@ deploy {
       component = 'curtinFrcVision'
       buildType = 'release'
 
+      predeploy << { execute('sudo systemctl stop vision || true') }
       // Make sure we can run our program!
-      postdeploy << { execute('chmod +x curtinFrcVision') }
+      postdeploy << { execute('chmod +x curtinFrcVision'); execute('sudo systemctl restart vision || true') }
     }
 
     // Copy data/ folder in the program's working directory
@@ -97,7 +102,17 @@ model {
         }
       }
 
-      useLibrary(it, 'opencv', 'wpilib')
+      binaries.all {
+        if (targetPlatform.name == wpi.platforms.desktop) {
+          cppCompiler.define '__DESKTOP__'
+          if (targetPlatform.operatingSystem.isLinux()) {
+            linker.args << '-lusb-1.0'
+          }
+        }
+      }
+
+      useLibrary(it, 'opencv', 'cameraserver', 'cscore', 'ntcore', 'wpiutil')
+      wpi.deps.vendor.cpp(it)
     }
   }
 }
