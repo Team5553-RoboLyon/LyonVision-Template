@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "(Windows) Launch",
+      "name": "Windows Debug",
       "type": "cppvsdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/install/curtinFrcVision/windowsx86-64/debug/lib/curtinFrcVision.exe",
@@ -16,16 +16,32 @@
       "externalConsole": true
     },
     {
-      "type": "wpilib",
-      "name": "WPILib Desktop Debug",
+      "name": "Linux Debug (gdb)",
+      "type": "cppdbg",
       "request": "launch",
-      "desktop": true,
-    },
-    {
-      "type": "wpilib",
-      "name": "WPILib roboRIO Debug",
-      "request": "launch",
-      "desktop": false,
+      "program": "${workspaceFolder}/build/install/curtinFrcVision/linuxx86-64/debug/lib/curtinFrcVision",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/install/curtinFrcVision/linuxx86-64/debug/lib/",
+      "environment": [
+        {
+          "name": "DYLD_LIBRARY_PATH",
+          "value": "${workspaceFolder}/build/install/curtinFrcVision/linuxx86-64/debug/lib/"
+        },
+        {
+          "name": "LD_LIBRARY_PATH",
+          "value": "${workspaceFolder}/build/install/curtinFrcVision/linuxx86-64/debug/lib/"
+        }
+      ],
+      "externalConsole": true,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
     }
   ]
 }
