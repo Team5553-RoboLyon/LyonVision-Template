@@ -12,6 +12,7 @@ int main() {
 #endif
 
   std::cout << "Starting Vision Program" << std::endl;
+  std::cout << "This Program was made for the 2019 Game DeepSpace, And tracks and outputs green values" << std::endl;
   curtin_frc_vision vision;
   vision.run();
   std::cout << "Vision Program Exited. Was that meant to happen?" << std::endl;

@@ -24,6 +24,8 @@ int ResWidth = 640, ResHeight = 480;
 float width_goal;
 float height_goal;
 
+bool usingTapeTrack = false;
+
 // This is the main entrypoint into the Vision Program!
 void curtin_frc_vision::run() {
 
@@ -48,21 +50,29 @@ void curtin_frc_vision::run() {
 	// This lets us see the camera output on the robot dashboard. We give it a name, and a width and height.
   cs::CvSource output = frc::CameraServer::GetInstance()->PutVideo("USB Camera", video_mode.width, video_mode.height);
 
-  cv::Mat imgTracking{video_mode.height, video_mode.width, CV_8UC3};
+  cv::Mat imgOriginal{video_mode.height, video_mode.width, CV_8UC3};
+
+	// Changes the exposure for detecting retroReflective Tape and gives minimal error (requires ring light)
+	if (usingTapeTrack);
+	{
+		cam.SetExposureManual(-100);
+	}
 
   while (true)
 	{
-		if (sink.GrabFrame(imgTracking) != 0)
+		if (sink.GrabFrame(imgOriginal) != 0)
 		{
 			// Convert input image to HSV
-			cvtColor(imgTracking, imgTracking, COLOR_BGR2HSV); //Convert the captugreen frame from BGR to HSV
+			cv::Mat imgTracking;
+			cvtColor(imgOriginal, imgTracking, COLOR_BGR2HSV); //Convert the captugreen frame from BGR to HSV
 
 			
 			// Threshold the HSV image, keep only the green pixels
 			cv::inRange(imgTracking, cv::Scalar(35, 100, 100), cv::Scalar(78, 255, 255), imgTracking);
 			
-			erode(imgTracking, imgTracking, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
-			dilate(imgTracking, imgTracking, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
+			// Forgets green pixels under a certain size. Good if you don't want many errors
+			erode(imgTracking, imgTracking, getStructuringElement(MORPH_ELLIPSE, Size(10, 10)));
+			dilate(imgTracking, imgTracking, getStructuringElement(MORPH_ELLIPSE, Size(10, 10)));
 
 			// Detect edges using Canny
 			Canny(imgTracking, imgTracking, thresh, thresh * 2);
@@ -142,17 +152,23 @@ void curtin_frc_vision::run() {
 				width_offset = width_goal - center.x;
 				height_offset = height_goal - center.y;
 		
-				stringstream temp;
-				putText(imgTracking, "Points(= ",Point(center.x,center.y+50), FONT_HERSHEY_SIMPLEX, 1, Scalar(0,0,255));
+      	std::stringstream offsetY;	offsetY << height_offset;
+      	std::stringstream offsetX;	offsetX << width_offset;
+      	cv::putText(imgTracking, "xy(" + offsetX.str() + "," + offsetY.str() + ")", mc[i] + cv::Point2f(-25,25), cv::FONT_HERSHEY_COMPLEX_SMALL, 1, cv::Scalar(255,0,255)); //text with distance and angle on target
 			}
 
 		#ifdef __DESKTOP__
-    	cv::imshow("Output Image", imgTracking); // Tinkerboards and Pi's don't like imshow, so we get rid of it
+    	cv::imshow("Output Image", imgTracking); // Tinkerboards and Pi's don't like imshow, so we get rid of it while running on dev boards
+			cv::imshow("Original Image", imgOriginal);
 		#endif
     	output.PutFrame(imgTracking);
-			
+			output.PutFrame(imgOriginal);
+
 			waitKey(30);
 		}
-		std::cout << "Cannot read a frame from video stream. Is the external WebCam Plugged in?" << endl;
+		else
+		{	
+			std::cout << "Cannot read a frame from video stream. Is the external WebCam Plugged in?" << endl;
+		}
 	}
 }
