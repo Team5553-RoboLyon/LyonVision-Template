@@ -119,9 +119,8 @@ model {
 
 // Copie du dossier Data/ dans le dossier ou se trouve le programme Windows
 task copyData(type: Copy) {
-  from 'src'
-  into "build/install/curtinFrcVision/${wpi.platforms.desktop}/debug/lib"
-  include 'data/***'
+  from 'src/data'
+  into "build/install/curtinFrcVision/${wpi.platforms.desktop}/debug/lib/data"
 }
 
 // La copie doit être executée après l'installation du programme (sinon le dossier est effacé)
