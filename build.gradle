@@ -49,7 +49,7 @@ deploy {
     // Some extra stuff for our vision program. Includes system configs, also!
     fileTreeArtifact('visionResources') {
       targets << 'coprocessor'
-      files = fileTree(dir: 'src/main/resources')
+      files = fileTree(dir: 'resources')
 
       // Install the systemd service. This makes our vision run on startup!
       postdeploy << { 
@@ -95,10 +95,14 @@ model {
 
       sources.cpp {
         source {
-          srcDir 'src/main/cpp'
+          srcDir 'src'
+          include '**/*.cpp'
+          exclude 'test'
         }
         exportedHeaders {
-          srcDir 'src/main/include'
+          srcDir 'src'
+          include '**/*.h'
+          exclude 'test'
         }
       }
 
