@@ -8,10 +8,10 @@
       "name": "Windows Debug",
       "type": "cppvsdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/build/install/curtinFrcVision/windowsx86-64/debug/lib/curtinFrcVision.exe",
+      "program": "${workspaceFolder}/build/install/VisionProgram/windowsx86-64/debug/lib/VisionProgram.exe",
       "args": [],
       "stopAtEntry": false,
-      "cwd": "${workspaceFolder}/build/install/curtinFrcVision/windowsx86-64/debug/lib/",
+      "cwd": "${workspaceFolder}/build/install/VisionProgram/windowsx86-64/debug/lib/",
       "environment": [],
       "externalConsole": true
     },
@@ -19,18 +19,18 @@
       "name": "Linux Debug (gdb)",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/build/install/curtinFrcVision/linuxx86-64/debug/lib/curtinFrcVision",
+      "program": "${workspaceFolder}/build/install/VisionProgram/linuxx86-64/debug/lib/VisionProgram",
       "args": [],
       "stopAtEntry": false,
-      "cwd": "${workspaceFolder}/build/install/curtinFrcVision/linuxx86-64/debug/lib/",
+      "cwd": "${workspaceFolder}/build/install/VisionProgram/linuxx86-64/debug/lib/",
       "environment": [
         {
           "name": "DYLD_LIBRARY_PATH",
-          "value": "${workspaceFolder}/build/install/curtinFrcVision/linuxx86-64/debug/lib/"
+          "value": "${workspaceFolder}/build/install/VisionProgram/linuxx86-64/debug/lib/"
         },
         {
           "name": "LD_LIBRARY_PATH",
-          "value": "${workspaceFolder}/build/install/curtinFrcVision/linuxx86-64/debug/lib/"
+          "value": "${workspaceFolder}/build/install/VisionProgram/linuxx86-64/debug/lib/"
         }
       ],
       "externalConsole": true,

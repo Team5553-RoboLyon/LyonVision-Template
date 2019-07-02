@@ -27,12 +27,12 @@ deploy {
     nativeArtifact('vision') {
       targetPlatform = wpi.platforms.raspbian
       targets << 'coprocessor'
-      component = 'curtinFrcVision'
+      component = 'VisionProgram'
       buildType = 'release'
 
       predeploy << { execute('sudo systemctl stop vision || true') }
       // Make sure we can run our program!
-      postdeploy << { execute('chmod +x curtinFrcVision'); execute('sudo systemctl restart vision || true') }
+      postdeploy << { execute('chmod +x VisionProgram'); execute('sudo systemctl restart vision || true') }
     }
 
     // Copy data/ folder in the program's working directory
@@ -89,7 +89,7 @@ deploy {
 
 model {
   components {
-    curtinFrcVision(NativeExecutableSpec) {
+    VisionProgram(NativeExecutableSpec) {
       targetPlatform wpi.platforms.desktop
       targetPlatform wpi.platforms.raspbian
 
@@ -124,10 +124,10 @@ model {
 // Copie du dossier Data/ dans le dossier ou se trouve le programme Windows
 task copyData(type: Copy) {
   from 'src/data'
-  into "build/install/curtinFrcVision/${wpi.platforms.desktop}/debug/lib/data"
+  into "build/install/VisionProgram/${wpi.platforms.desktop}/debug/lib/data"
 }
 
 // La copie doit être executée après l'installation du programme (sinon le dossier est effacé)
-copyData.mustRunAfter "installCurtinFrcVision${wpi.platforms.desktop.capitalize()}DebugExecutable"
+copyData.mustRunAfter "installVisionProgram${wpi.platforms.desktop.capitalize()}DebugExecutable"
 
-task runVision(dependsOn: ["simulateCurtinFrcVision${wpi.platforms.desktop.capitalize()}DebugExecutable", "copyData"])
+task runVision(dependsOn: ["simulateVisionProgram${wpi.platforms.desktop.capitalize()}DebugExecutable", "copyData"])

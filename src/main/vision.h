@@ -1,6 +1,6 @@
 #pragma once
 
-class curtin_frc_vision {
+class Vision {
  public:
   void run();
 };

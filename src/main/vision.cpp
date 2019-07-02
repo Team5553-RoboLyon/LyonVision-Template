@@ -27,7 +27,7 @@ float height_goal;
 bool usingTapeTrack = false;
 
 // This is the main entrypoint into the Vision Program!
-void curtin_frc_vision::run() {
+void Vision::run() {
   // This creates a webcam on USB, and dumps it into a sink. The sink allows us
   // to access the image with sink.GrabFrame
   cs::UsbCamera cam{"USBCam", 0};

@@ -1,10 +1,10 @@
 [Unit]
-Description=Curtin FRC Vision Service
+Description=FRC Vision Service
 
 [Service]
 Type=simple
 Restart=always
-ExecStart=/home/vision/curtinFrcVision
+ExecStart=/home/vision/VisionProgram
 WorkingDirectory=/home/vision
 
 [Install]
