@@ -39,7 +39,7 @@ A simple vision tracking format to use and create other programs with, by defaul
 
 ### 4. Run the following command:
   ```bash
-  wget --no-check-certificate -qO - https://github.com/nathanmutin/Vision-Tracking-Format/blob/master/vision/bootstrap.sh?raw=1 | bash
+  wget --no-check-certificate -qO - https://github.com/nathanmutin/Vision-Tracking-Format/blob/master/bootstrap.sh?raw=1 | bash
   ```
 
 ### 5. Your Coprocessor will now restart
