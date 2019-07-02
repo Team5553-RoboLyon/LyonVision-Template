@@ -1,15 +1,20 @@
 #include "diapo.h"
 #include <opencv2/videoio.hpp>
 
-Diapo::Diapo(std::string foldername, std::string extention, int nombreDePhotos) {
-  m_foldername     = checkFolderName(foldername);
-  m_extention      = checkExtension(extention);
-  m_nombreDePhotos = nombreDePhotos;
+Diapo::Diapo(std::string foldername, std::string extention) {
+  // Pattern pour trouver les images (le char '*' remplace n'importe quel nom de fichier)
+  std::string pattern = checkFolderName(foldername) + "*" + checkExtension(extention);
+
+  // Liste tous les fichiers qui correspondent au pattern
+  cv::glob(pattern, m_imagesNames);
+
+  // Recuperation du nombre d'images et mise à zéro du compteur
+  m_nombreDePhotos = m_imagesNames.size();
   m_iterator       = 0;
 }
 
 bool Diapo::read(cv::OutputArray image) {
-  cv::VideoCapture capture(m_foldername + std::to_string(m_iterator) + m_extention);
+  cv::VideoCapture capture(m_imagesNames[m_iterator]);
   incrementation();
   return capture.read(image);
 }
