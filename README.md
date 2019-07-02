@@ -53,7 +53,7 @@ A simple vision tracking format to use and create other programs with, by defaul
 
 ## Running your code locally on your computer :
 ```bash
-.\gradlew run
+.\gradlew runVision
 ```
 
 ## Deploying your code to the Raspberry Pi
@@ -64,4 +64,9 @@ A simple vision tracking format to use and create other programs with, by defaul
 ## Build all
 ```bash
 .\gradlew build
+```
+
+## Test code
+```bash
+.\gradlew check
 ```

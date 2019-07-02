@@ -1,5 +1,6 @@
 plugins {
   id "edu.wpi.first.GradleRIO" version "2019.4.1"
+  id "google-test-test-suite"
   id "cpp"
 }
 toolchainsPlugin.withRaspbian()
@@ -115,7 +116,22 @@ model {
         }
       }
 
-      useLibrary(it, 'opencv', 'cameraserver', 'cscore', 'ntcore', 'wpiutil')
+      useLibrary(it, 'opencv', "wpilib")
+      wpi.deps.vendor.cpp(it)
+    }
+  }
+  testSuites {
+    VisionProgramTest(GoogleTestTestSuiteSpec) {
+      testing $.components.VisionProgram
+
+      sources.cpp {
+        source {
+          srcDir 'src/test/cpp'
+          include '**/*.cpp'
+        }
+      }
+
+      useLibrary(it, 'opencv', 'wpilib', 'googletest')
       wpi.deps.vendor.cpp(it)
     }
   }
