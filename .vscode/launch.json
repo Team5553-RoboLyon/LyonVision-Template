@@ -8,20 +8,17 @@
       "name": "Windows Debug",
       "type": "cppvsdbg",
       "request": "launch",
+      "preLaunchTask": "InstallAndCopyWindows",
       "program": "${workspaceFolder}/build/install/VisionProgram/windowsx86-64/debug/lib/VisionProgram.exe",
-      "args": [],
-      "stopAtEntry": false,
       "cwd": "${workspaceFolder}/build/install/VisionProgram/windowsx86-64/debug/lib/",
-      "environment": [],
       "externalConsole": true
     },
     {
       "name": "Linux Debug (gdb)",
       "type": "cppdbg",
       "request": "launch",
+      "preLaunchTask": "InstallAndCopyLinux",
       "program": "${workspaceFolder}/build/install/VisionProgram/linuxx86-64/debug/lib/VisionProgram",
-      "args": [],
-      "stopAtEntry": false,
       "cwd": "${workspaceFolder}/build/install/VisionProgram/linuxx86-64/debug/lib/",
       "environment": [
         {
