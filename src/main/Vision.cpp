@@ -161,11 +161,11 @@ void Vision::run() {
                  imgTracking);  // Tinkerboards and Pi's don't like imshow, so
                                 // we get rid of it while running on dev boards
       cv::imshow("Original Image", imgOriginal);
+      waitKey(30);
 #endif
       output.PutFrame(imgTracking);
       output.PutFrame(imgOriginal);
 
-      waitKey(30);
     } else {
       std::cout << "Cannot read a frame from video stream. Is the external "
                    "WebCam Plugged in?"

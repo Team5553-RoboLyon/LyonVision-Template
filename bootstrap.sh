@@ -12,7 +12,13 @@ sudo adduser vision --disabled-password --gecos ""
 sudo adduser vision sudo
 echo "vision:5553" | sudo chpasswd
 
-# Set hostname, user and password
+# Enable PiCam
+sudo raspi-config nonint do_camera 0
+
+# Add vision user to video group (access to camera)
+sudo usermod -a -G video vision
+
+# Set hostname
 echo pi5553 | sudo tee /etc/hostname
 
 # Reboot to commit changes
