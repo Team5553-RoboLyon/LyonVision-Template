@@ -60,6 +60,7 @@ deploy {
 
         // Configure the SSH server (to allow X forwarding)
         execute('sudo cp $(pwd)/system/sshd_config /etc/ssh/sshd_config')
+      }
     }
 
     // Store all the libraries in /home/vision/libraries, that way we don't poison /usr/local.
