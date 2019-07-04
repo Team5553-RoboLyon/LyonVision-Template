@@ -1,4 +1,4 @@
-#include "diapo.h"
+#include "lib/Diapo.h"
 #include <opencv2/videoio.hpp>
 
 Diapo::Diapo(std::string foldername, std::string extention) {
