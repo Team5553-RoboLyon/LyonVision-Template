@@ -17,10 +17,6 @@ deploy {
           password = '5553'
         }
       }
-
-      // For VSCode Debugging - we won't be able to deploy to every target!
-      if (project.hasProperty("debugMode"))
-        failOnMissing = false
     }
   }
 
@@ -47,30 +43,23 @@ deploy {
       }
     }
 
-    // Some extra stuff for our vision program. Includes system configs, also!
+    // System configs : install systemd service and configure ssh
     fileTreeArtifact('visionResources') {
       targets << 'coprocessor'
       files = fileTree(dir: 'resources')
 
-      // Install the systemd service. This makes our vision run on startup!
       postdeploy << { 
         // Install a symlink for the service so the system can run it! A symlink is like a pointer for files
         execute('sudo ln -sf $(pwd)/system/vision.service /etc/systemd/system')
-        if (project.hasProperty('stop')) {
-          execute('sudo systemctl daemon-reload; sudo service vision stop; sudo service vision status')
-        } else {
-          // Reload the system services and start our vision service. Also print out the status :)
-          execute('sudo systemctl daemon-reload; sudo service vision restart; sudo service vision status')
-        }
-      }
 
-      // Configure the SSH server. Also backs up the ssh config
-      postdeploy << {
-        // Back up the stock sshd config, just in case!
-        execute('sudo cp -n /etc/ssh/sshd_config /etc/ssh/sshd_config.old')
-        // Replace the stock sshd config with ours (to allow X forwarding)
+        // Reload the system services and start our vision service.
+        execute('sudo systemctl daemon-reload; sudo systemctl restart vision')
+
+        // Enable our vision service on startup
+        execute('sudo systemctl enable vision')
+
+        // Configure the SSH server (to allow X forwarding)
         execute('sudo cp $(pwd)/system/sshd_config /etc/ssh/sshd_config')
-      }
     }
 
     // Store all the libraries in /home/vision/libraries, that way we don't poison /usr/local.
@@ -117,7 +106,6 @@ model {
       }
 
       useLibrary(it, 'opencv', "wpilib")
-      wpi.deps.vendor.cpp(it)
     }
   }
   testSuites {
@@ -132,7 +120,6 @@ model {
       }
 
       useLibrary(it, 'opencv', 'wpilib', 'googletest')
-      wpi.deps.vendor.cpp(it)
     }
   }
 }
