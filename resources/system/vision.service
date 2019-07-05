@@ -4,7 +4,7 @@ Description=FRC Vision Service
 [Service]
 Type=simple
 Restart=always
-ExecStart=/home/vision/VisionProgram
+ExecStart=/home/vision/visionProgram
 WorkingDirectory=/home/vision
 
 [Install]

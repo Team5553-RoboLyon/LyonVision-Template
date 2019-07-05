@@ -24,12 +24,12 @@ deploy {
     nativeArtifact('vision') {
       targetPlatform = wpi.platforms.raspbian
       targets << 'coprocessor'
-      component = 'VisionProgram'
+      component = 'visionProgram'
       buildType = 'release'
 
       predeploy << { execute('sudo systemctl stop vision || true') }
       // Make sure we can run our program!
-      postdeploy << { execute('chmod +x VisionProgram'); execute('sudo systemctl restart vision || true') }
+      postdeploy << { execute('chmod +x visionProgram'); execute('sudo systemctl restart vision || true') }
     }
 
     // Copy data/ folder in the program's working directory
@@ -80,7 +80,7 @@ deploy {
 
 model {
   components {
-    VisionProgram(NativeExecutableSpec) {
+    visionProgram(NativeExecutableSpec) {
       targetPlatform wpi.platforms.desktop
       targetPlatform wpi.platforms.raspbian
 
@@ -110,8 +110,8 @@ model {
     }
   }
   testSuites {
-    VisionProgramTest(GoogleTestTestSuiteSpec) {
-      testing $.components.VisionProgram
+    visionProgramTest(GoogleTestTestSuiteSpec) {
+      testing $.components.visionProgram
 
       sources.cpp {
         source {
@@ -128,7 +128,7 @@ model {
 // Copie du dossier Data/ dans le dossier ou se trouve le programme Windows
 task copyData(type: Copy) {
   from 'src/data'
-  into "build/install/VisionProgram/${wpi.platforms.desktop}/debug/lib/data"
+  into "build/install/visionProgram/${wpi.platforms.desktop}/debug/lib/data"
 }
 
 // La copie doit être executée après l'installation du programme (sinon le dossier est effacé)

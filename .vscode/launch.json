@@ -9,8 +9,8 @@
       "type": "cppvsdbg",
       "request": "launch",
       "preLaunchTask": "InstallAndCopyWindows",
-      "program": "${workspaceFolder}/build/install/VisionProgram/windowsx86-64/debug/lib/VisionProgram.exe",
-      "cwd": "${workspaceFolder}/build/install/VisionProgram/windowsx86-64/debug/lib/",
+      "program": "${workspaceFolder}/build/install/visionProgram/windowsx86-64/debug/lib/visionProgram.exe",
+      "cwd": "${workspaceFolder}/build/install/visionProgram/windowsx86-64/debug/lib/",
       "externalConsole": true
     },
     {
@@ -18,16 +18,16 @@
       "type": "cppdbg",
       "request": "launch",
       "preLaunchTask": "InstallAndCopyLinux",
-      "program": "${workspaceFolder}/build/install/VisionProgram/linuxx86-64/debug/lib/VisionProgram",
-      "cwd": "${workspaceFolder}/build/install/VisionProgram/linuxx86-64/debug/lib/",
+      "program": "${workspaceFolder}/build/install/visionProgram/linuxx86-64/debug/lib/visionProgram",
+      "cwd": "${workspaceFolder}/build/install/visionProgram/linuxx86-64/debug/lib/",
       "environment": [
         {
           "name": "DYLD_LIBRARY_PATH",
-          "value": "${workspaceFolder}/build/install/VisionProgram/linuxx86-64/debug/lib/"
+          "value": "${workspaceFolder}/build/install/visionProgram/linuxx86-64/debug/lib/"
         },
         {
           "name": "LD_LIBRARY_PATH",
-          "value": "${workspaceFolder}/build/install/VisionProgram/linuxx86-64/debug/lib/"
+          "value": "${workspaceFolder}/build/install/visionProgram/linuxx86-64/debug/lib/"
         }
       ],
       "externalConsole": true,
