@@ -18,8 +18,9 @@ sudo raspi-config nonint do_camera 0
 # Add vision user to video group (access to camera)
 sudo usermod -a -G video vision
 
-# Set hostname
+# Change hostname
 echo pi5553 | sudo tee /etc/hostname
+sudo sed -i 's/raspberrypi/pi5553/g' /etc/hosts
 
 # Reboot to commit changes
 sudo reboot
