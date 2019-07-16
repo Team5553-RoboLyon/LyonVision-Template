@@ -35,7 +35,7 @@ A simple vision tracking format to use and create other programs with, by defaul
 ### 3. SSH into the Coprocessor
   - On Mac/Linux, use `ssh username@hostname`
   - On Windows, download [puTTY](https://www.putty.org/) and use that.
-  - **Hostname: `raspberrypi`, Username: `pi`, Password: `raspberry`**
+  - **Hostname: `raspberrypi.local`, Username: `pi`, Password: `raspberry`**
 
 ### 4. Run the following command:
   ```bash
@@ -43,7 +43,7 @@ A simple vision tracking format to use and create other programs with, by defaul
   ```
 
 ### 5. Your Coprocessor will now restart
-  - Hostname: `pi5553`
+  - Hostname: `pi5553.local`
   - Username: `vision`
   - Password: `5553`
 
