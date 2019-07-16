@@ -43,7 +43,7 @@ deploy {
       }
     }
 
-    // System configs : install systemd service and configure ssh
+    // System configs : install systemd service
     fileTreeArtifact('visionResources') {
       targets << 'coprocessor'
       files = fileTree(dir: 'resources')
@@ -57,9 +57,6 @@ deploy {
 
         // Enable our vision service on startup
         execute('sudo systemctl enable vision')
-
-        // Configure the SSH server (to allow X forwarding)
-        execute('sudo cp $(pwd)/system/sshd_config /etc/ssh/sshd_config')
       }
     }
 
