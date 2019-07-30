@@ -2,7 +2,7 @@
 
 A simple vision tracking format to use, create and deploy other programs with.
 
-This template has to be used with the LyonVision raspberry pi image located at https://github.com/nathanmutin/pi-gen/
+This template has to be used with the LyonVision raspberry pi image located at https://github.com/Team5553-RoboLyon/LyonVision-pi-gen
 
 **All Vision Tracking code is located in the folder [src/main/](src/main)**
 
@@ -28,7 +28,7 @@ This template has to be used with the LyonVision raspberry pi image located at h
 
 ## With the Raspberry Pi
 
-### 1. Grab the custom Raspberry Pi image from the [LyonVision-pi-gen repository](https://github.com/nathanmutin/pi-gen/releases)
+### 1. Grab the custom Raspberry Pi image from the [LyonVision-pi-gen repository](https://github.com/Team5553-RoboLyon/LyonVision-pi-gen/releases)
   - Latest release with name `LyonVision n°x - date`
 
 ### 2. Flash the image onto a microSD card using etcher: https://etcher.io/
