@@ -1,6 +1,8 @@
-# Vision-Tracking-Format
+# LyonVision Template
 
-A simple vision tracking format to use and create other programs with, by default it should be somewhat setup for the 2019 FRC game Deep Space
+A simple vision tracking format to use, create and deploy other programs with.
+
+This template has to be used with the LyonVision raspberry pi image located at https://github.com/nathanmutin/pi-gen/
 
 **All Vision Tracking code is located in the folder [src/main/](src/main)**
 
@@ -26,26 +28,17 @@ A simple vision tracking format to use and create other programs with, by defaul
 
 ## With the Raspberry Pi
 
-### 1. Grab the [Raspberry Pi image](https://downloads.raspberrypi.org/raspbian_lite_latest)
+### 1. Grab the custom Raspberry Pi image from the [LyonVision-pi-gen repository](https://github.com/nathanmutin/pi-gen/releases)
+  - Latest release with name `LyonVision n°x - date`
 
 ### 2. Flash the image onto a microSD card using etcher: https://etcher.io/
   - You will need to grab the .img file from the zip. The .img file is what you give to etcher.
   - After complete, insert the microSD card and startup the coprocessor. It may take a minute or two.
 
-### 3. SSH into the Coprocessor
-  - On Mac/Linux, use `ssh username@hostname`
-  - On Windows, download [puTTY](https://www.putty.org/) and use that.
-  - **Hostname: `raspberrypi.local`, Username: `pi`, Password: `raspberry`**
-
-### 4. Run the following command:
-  ```bash
-  wget --no-check-certificate -qO - https://github.com/nathanmutin/Vision-Tracking-Format/blob/master/bootstrap.sh?raw=1 | bash
-  ```
-
-### 5. Your Coprocessor will now restart
-  - Hostname: `pi5553.local`
+### 3. Start your Raspberry Pi
+  - Hostname: `lyonvision.local`
   - Username: `vision`
-  - Password: `5553`
+  - Password: `lyon`
 
 
 
