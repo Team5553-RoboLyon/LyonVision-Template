@@ -64,3 +64,8 @@ This template has to be used with the LyonVision raspberry pi image located at h
 ```bash
 .\gradlew check
 ```
+
+
+# Git Submodule
+
+The folder `src/lib/` is a git submodule. It is a link to the [Team5553-RoboLyon/LyonVision-Library](https://github.com/Team5553-RoboLyon/LyonVision-Library) repo where the pseudo-library files are located. These files are in a separated repository because there can be used by several projects.
