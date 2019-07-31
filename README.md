@@ -6,6 +6,7 @@ This template has to be used with the LyonVision raspberry pi image located at h
 
 **All Vision Tracking code is located in the folder [src/main/](src/main)**
 
+:warning: When you use this repository as a template: make sure to run ` git submodule add https://github.com/Team5553-RoboLyon/LyonVision-Library src/lib` after cloning your new repo and to push your changes.
 
 # Getting started
 
