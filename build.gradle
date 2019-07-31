@@ -5,6 +5,9 @@ plugins {
 }
 toolchainsPlugin.withRaspbian()
 
+// Init and update git submodules
+"git submodule update --init --recursive".execute();
+
 deploy {
   targets {
     target('coprocessor') {
