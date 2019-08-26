@@ -9,6 +9,8 @@ class Vision {
   void Run();
 
  private:
+  cv::Mat PrepareFrame(cv::Mat frame);
+
   cv::VideoCapture      m_camera;
   lyonlib::MjpegStream* m_streamServerOriginal;
   lyonlib::MjpegStream* m_streamServerTracking;

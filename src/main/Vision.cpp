@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+int thresh = 100;
+
 Vision::Vision() : m_resWidth(320), m_resHeight(240) {
   m_camera = cv::VideoCapture(0);
 
@@ -24,28 +26,13 @@ Vision::Vision() : m_resWidth(320), m_resHeight(240) {
 void Vision::Run() {
   cv::RNG  rng(12345);
   cv::Rect bounding_rect;
-  int      thresh = 100;
   float    height_offset;
   float    width_offset;
   cv::Mat  imgOriginal;
 
   while (true) {
     if (m_camera.read(imgOriginal)) {
-      // Convert input image to HSV
-      cv::Mat imgTracking;
-      cv::cvtColor(imgOriginal, imgTracking,
-                   cv::COLOR_BGR2HSV);  // Convert the captugreen frame from BGR to HSV
-
-      // Threshold the HSV image, keep only the green pixels
-      cv::inRange(imgTracking, cv::Scalar(35, 100, 100), cv::Scalar(78, 255, 255), imgTracking);
-
-      // Forgets green pixels under a certain size. Good if you don't want many
-      // errors
-      cv::erode(imgTracking, imgTracking, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(10, 10)));
-      cv::dilate(imgTracking, imgTracking, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(10, 10)));
-
-      // Detect edges using Canny
-      cv::Canny(imgTracking, imgTracking, thresh, thresh * 2);
+      cv::Mat imgTracking = PrepareFrame(imgOriginal);
 
       /// Find contours
       std::vector<std::vector<cv::Point> > contours;
@@ -127,10 +114,8 @@ void Vision::Run() {
       }
 
 #ifdef __DESKTOP__
-      cv::imshow("Output Image",
-                 imgTracking);  // Tinkerboards and Pi's don't like imshow, so
-                                // we get rid of it while running on dev boards
       cv::imshow("Original Image", imgOriginal);
+      cv::imshow("Output Image", imgTracking);
       cv::waitKey(30);
 #endif
       m_streamServerOriginal->PutFrame(imgOriginal);
@@ -140,4 +125,23 @@ void Vision::Run() {
       std::cout << "Cannot read a frame from video stream" << std::endl;
     }
   }
+}
+
+cv::Mat Vision::PrepareFrame(cv::Mat frame) {
+  // Convert input image to HSV
+  cv::cvtColor(frame, frame,
+               cv::COLOR_BGR2HSV);  // Convert the captugreen frame from BGR to HSV
+
+  // Threshold the HSV image, keep only the green pixels
+  cv::inRange(frame, cv::Scalar(35, 100, 100), cv::Scalar(78, 255, 255), frame);
+
+  // Forgets green pixels under a certain size. Good if you don't want many
+  // errors
+  cv::erode(frame, frame, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(10, 10)));
+  cv::dilate(frame, frame, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(10, 10)));
+
+  // Detect edges using Canny
+  cv::Canny(frame, frame, thresh, thresh * 2);
+
+  return frame;
 }
