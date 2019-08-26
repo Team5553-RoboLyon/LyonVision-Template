@@ -11,10 +11,10 @@ int main() {
 #endif
 
   std::cout << "Starting Vision Program" << std::endl;
-  std::cout << "This Program was made for the 2019 Game DeepSpace, And tracks and outputs green values"
-            << std::endl;
+
   Vision vision;
-  vision.run();
+  vision.Run();
+
   std::cout << "Vision Program Exited. Was that meant to happen?" << std::endl;
   return -1;
 }
