@@ -14,7 +14,7 @@ task submodulesUpdate(type:Exec) {
     commandLine 'cmd', '/c', 'git', 'submodule', 'foreach', 'git', 'pull', '&&', 'git', 'submodule', 'foreach', 'git', 'checkout', 'master'
   }
   else {
-    commandLine 'git', 'submodule', 'foreach', 'git', 'pull', '&&', 'git', 'submodule', 'foreach', 'git', 'checkout', 'master'
+    commandLine 'git', 'submodule', 'update', '--init', '--recursive', '--remote'
   }
 }
 allprojects {
