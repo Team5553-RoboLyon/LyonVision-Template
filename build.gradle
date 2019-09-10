@@ -11,10 +11,10 @@ task submodulesUpdate(type:Exec) {
   ignoreExitValue true
   
   if (org.gradle.internal.os.OperatingSystem.current().windows) {
-    commandLine 'cmd', '/c', 'git', 'submodule', 'update', '--init', '--recursive', '--remote'
+    commandLine 'cmd', '/c', 'git', 'submodule', 'foreach', 'git', 'pull', '&&', 'git', 'submodule', 'foreach', 'git', 'checkout', 'master'
   }
   else {
-    commandLine 'git', 'submodule', 'update', '--init', '--recursive', '--remote'
+    commandLine 'git', 'submodule', 'foreach', 'git', 'pull', '&&', 'git', 'submodule', 'foreach', 'git', 'checkout', 'master'
   }
 }
 allprojects {
