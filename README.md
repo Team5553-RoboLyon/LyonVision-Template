@@ -8,7 +8,7 @@ This template has to be used with the LyonVision raspberry pi image located at h
 
 1. [Create a repository based on this template](https://help.github.com/en/articles/creating-a-repository-from-a-template)
 
-2. Run `git submodule add https://github.com/Team5553-RoboLyon/LyonVision-Library src/lib` after cloning your new repo and to push your changes. This will init the [LyonVision-Library](https://github.com/Team5553-RoboLyon/LyonVision-Library) git submodule.
+2. Run `git submodule add https://github.com/Team5553-RoboLyon/LyonVision-Library src/lib` after cloning your new repo. This will init the [LyonVision-Library](https://github.com/Team5553-RoboLyon/LyonVision-Library) git submodule.
 
 3. Remove this [README](README.md) and rename the [README_Generated-Repos.md](README_Generated-Repos.md) file to `README.md`.
 
